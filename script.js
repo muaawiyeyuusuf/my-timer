@@ -41,7 +41,7 @@ const tick = () => {
     update();
     if (time <= 0) {
         toggle(false);
-        new Audio(`sounds/${sound}.mp3`).play().catch(console.error);
+new Audio(`${sound}.mp3`).play()
         if (isWork) {
             sessions++;
             localStorage.setItem('sessions', sessions);
@@ -87,7 +87,7 @@ if (el('sound-select')) {
     el('sound-select').onchange = (e) => {
         sound = e.target.value;
         localStorage.setItem('sound', sound);
-        new Audio(`sounds/${sound}.mp3`).play().catch(console.error);
+new Audio(`${sound}.mp3`).play()
     };
 }
 
