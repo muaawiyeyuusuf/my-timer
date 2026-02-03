@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Focus</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        .page-Section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .page-Section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-link {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="#" onclick="showPage('home')" class="logo">Pomofocus.</a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#" onclick="showPage('home')" class="nav-link active" id="nav-home">Home</a></li>
+                <li><a href="#" onclick="showPage('timer')" class="nav-link" id="nav-timer">Timer</a></li>
+                <li><a href="#" onclick="showPage('about')" class="nav-link" id="nav-about">About</a></li>
+                <li><a href="#" onclick="showPage('guide')" class="nav-link" id="nav-guide">Guide</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- Home Page -->
+        <div id="home" class="page-Section active">
+            <section class="hero glass-card">
+                <h1>Master Your Time</h1>
+                <p>Boost your productivity with our scientifically proven Pomodoro timer. Work smarter, not harder.</p>
+                <br>
+                <a href="#" onclick="showPage('timer')" class="btn btn-primary">Start Formatting</a>
+            </section>
+
+            <section class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Customizable Timer</h3>
+                    <p>Set your own work and break intervals to suit your workflow.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Track Stats</h3>
+                    <p>Keep track of your completed sessions directly in your browser.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Smart Alerts</h3>
+                    <p>Audio notifications ensure you never miss a break.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Timer Page -->
+        <div id="timer" class="page-Section">
+            <section class="glass-card timer-container" id="timer-section">
+                <h2 id="mode-text">Work Time</h2>
+                <div id="timer-display">25:00</div>
+
+                <div class="controls">
+                    <button id="start-btn" class="btn btn-primary">Start</button>
+                    <button id="pause-btn" class="btn btn-secondary" disabled>Pause</button>
+                    <button id="reset-btn" class="btn btn-danger">Reset</button>
+                </div>
+
+                <div class="settings-panel">
+                    <h3>Timer Settings</h3>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Work (min)</label>
+                            <input type="number" id="work-min" value="25" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label>Break (min)</label>
+                            <input type="number" id="break-min" value="5" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label>Sound</label>
+                            <select id="sound-select">
+                                <option value="beep">Beep</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <button id="apply-btn" class="btn btn-primary">Apply Settings</button>
+                </div>
+            </section>
+
+            <section class="glass-card">
+                <h3>Your Stats</h3>
+                <p>Total Sessions Completed: <span id="session-count"
+                        style="font-weight:bold; color:var(--primary); font-size:1.5rem;">0</span></p>
+                <br>
+                <button id="clear-stats-btn" class="btn btn-danger" style="font-size:0.8rem; padding:8px 16px;">Clear
+                    Stats</button>
+            </section>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page-Section">
+            <section class="glass-card profile-card">
+                <!-- Placeholder for student image -->
+                <div class="profile-img"></div>
+                <div class="profile-info">
+                    <h3>[Student Name]</h3>
+                    <p><strong>ID:</strong> [Your Student ID]</p>
+                    <p><strong>Course:</strong> Web Development</p>
+                    <br>
+                    <p>This project was built as part of the final assignment. It demonstrates DOM manipulation, Event
+                        Handling, and Responsive Design using Pure JavaScript.</p>
+                </div>
+            </section>
+
+            <section class="glass-card">
+                <h3>Project Details</h3>
+                <p>The Pomodoro Timer is a productivity tool designed to help users focus on tasks by breaking them into
+                    intervals. The application uses LocalStorage to persist user data and provides a customizable
+                    experience.</p>
+            </section>
+        </div>
+
+        <!-- Guide Page -->
+        <div id="guide" class="page-Section">
+            <section class="glass-card">
+                <h1 style="text-align: center; margin-bottom: 2rem;">How to Use</h1>
+
+                <div class="guide-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Start the Timer</h3>
+                        <p>Navigate to the <strong>Timer</strong> page and click "Start". The default interval is 25
+                            minutes
+                            of focus time.</p>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Take a Break</h3>
+                        <p>When the alarm rings, take a short 5-minute break. The timer will automatically switch modes
+                            for
+                            you.</p>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Customize</h3>
+                        <p>Need longer focus time? Use the settings panel below the timer to adjust Work and Break
+                            durations.</p>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Track Progress</h3>
+                        <p>Your completed sessions are saved automatically. Check the stats section to see how
+                            productive
+                            you've been!</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#" onclick="showPage('timer')" class="btn btn-primary">Try it Now</a>
+                </div>
+
+            </section>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Pomodoro Project. Designed by [Your Name].</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

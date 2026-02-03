@@ -1,0 +1,237 @@
+:root {
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --white: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #e9ecef;
+    color: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header & Nav */
+header {
+    background-color: var(--dark);
+    color: var(--white);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--white);
+    text-decoration: none;
+}
+
+/* Base Nav Styles (Desktop) */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ced4da;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--white);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Hamburger Menu Logic */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+}
+
+/* Main Content */
+main.container {
+    flex: 1;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* Cards */
+section, .glass-card, .feature-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    border: 1px solid #dee2e6;
+}
+
+/* Typography */
+h1, h2, h3 { color: var(--dark); margin-bottom: 1rem; }
+p { line-height: 1.6; }
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.1s, opacity 0.2s;
+}
+.btn:active { transform: scale(0.98); }
+.btn-primary { background-color: var(--primary); color: var(--white); }
+.btn-secondary { background-color: var(--secondary); color: var(--white); }
+.btn-danger { background-color: var(--danger); color: var(--white); }
+
+/* Home Page */
+.hero { text-align: center; }
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+}
+.feature-card { text-align: center; }
+.feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+/* Timer Page */
+.timer-container {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+#timer-display {
+    font-size: 5rem;
+    font-weight: bold;
+    color: var(--dark);
+    margin: 1rem 0;
+}
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+.settings-panel {
+    background: #f8f9fa;
+    padding: 20px;
+    border-top: 1px solid #dee2e6;
+}
+.input-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+.input-group { display: flex; flex-direction: column; align-items: flex-start; }
+.input-group input, .input-group select {
+    padding: 8px;
+    width: 80px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.input-group select { width: 100px; }
+
+/* About & Guide */
+.profile-card { display: flex; align-items: center; gap: 2rem; }
+.profile-img { width: 100px; height: 100px; background: #ddd; border-radius: 50%; }
+.guide-step { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+.step-number {
+    background: var(--primary); color: white; width: 30px; height: 30px;
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    font-weight: bold; flex-shrink: 0;
+}
+
+/* Footer */
+footer {
+    background: var(--dark);
+    color: #adb5bd;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+}
+
+/* --- RESPONSIVE / MOBILE STYLES --- */
+@media (max-width: 768px) {
+    /* Show Hamburger */
+    .hamburger { display: flex; }
+
+    /* Hide Nav Initially */
+    nav ul {
+        position: fixed;
+        right: -100%; /* Slide out */
+        top: 70px; /* Below header */
+        flex-direction: column;
+        background-color: var(--dark);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 20px 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Show Nav when Active */
+    nav.active ul {
+        right: 0;
+    }
+
+    nav a {
+        display: block;
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+    
+    /* Animation for Hamburger to X */
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Adjust Layouts */
+    .profile-card { flex-direction: column; text-align: center; }
+    #timer-display { font-size: 3.5rem; }
+    .input-row { flex-direction: column; align-items: center; }
+}
